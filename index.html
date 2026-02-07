@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rose Day for Sonakshi 🌹</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Segoe UI, sans-serif;
+  overflow: hidden;
+}
+
+/* Pages */
+.page {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.active {
+  display: flex;
+}
+
+/* Page 1 */
+#page1 {
+  background: #ffb3c1;
+}
+
+.tap-text {
+  font-size: 1.3em;
+  color: #7a0026;
+  margin-bottom: 20px;
+}
+
+.big-rose {
+  font-size: 100px;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Page 2 */
+#page2 {
+  background: linear-gradient(135deg, #ff4b6e, #ff9a9e);
+  color: white;
+}
+
+/* Popup */
+.popup {
+  position: absolute;
+  top: 40%;
+  font-size: 2em;
+  background: rgba(255,255,255,0.25);
+  padding: 20px 30px;
+  border-radius: 15px;
+  animation: pop 2s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Card */
+.card {
+  margin-top: 90px;
+  background: rgba(255,255,255,0.15);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 420px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.name {
+  font-size: 2em;
+  margin-bottom: 10px;
+  animation: glow 2s infinite;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #fff; }
+  50% { text-shadow: 0 0 20px #ffd1dc; }
+  100% { text-shadow: 0 0 5px #fff; }
+}
+
+.message {
+  font-size: 1.05em;
+  line-height: 1.6;
+}
+
+.from {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Day 2 Teaser */
+.teaser {
+  margin-top: 25px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: transform 0.2s;
+}
+
+.teaser:hover {
+  transform: scale(1.05);
+}
+
+/* Falling roses */
+.rose {
+  position: absolute;
+  top: -40px;
+  font-size: 22px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+  <p class="tap-text">Tap the rose if you love me 🌹</p>
+  <div class="big-rose" onclick="goNext()">🌹</div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+  <div class="popup" id="popup">Happy Rose Day 🌹 Sonakshi</div>
+
+  <div class="card">
+    <h1>Happy Rose Day 🌹</h1>
+    <h2 class="name">Sonakshi</h2>
+
+    <p class="message">
+      Happy Rose Day <b>jaanu</b> 🌹<br><br>
+      It's my first present of the Valentine’s week,  
+      so be prepared for the next 6 days —  
+      it’s gonna be really fun for you. Hehe 😌<br><br>
+      I love you so muchhhhhhhhhh 💖<br><br>
+      Ummmmmmmmahahhhhhhhhhhhhhhhhh 💋
+    </p>
+
+    <div class="teaser" onclick="showTeaser()">
+      🌸 Tap to unlock Day 2 🌸
+    </div>
+
+    <p class="from">— Yours, Always ❤️</p>
+  </div>
+</div>
+
+<script>
+function goNext() {
+  document.getElementById("page1").classList.remove("active");
+  document.getElementById("page2").classList.add("active");
+
+  setTimeout(() => {
+    document.getElementById("popup").style.display = "none";
+  }, 2500);
+
+  setInterval(createRose, 300);
+}
+
+function createRose() {
+  const rose = document.createElement("div");
+  rose.className = "rose";
+  rose.innerHTML = "🌹";
+  rose.style.left = Math.random() * 100 + "vw";
+  rose.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.body.appendChild(rose);
+
+  setTimeout(() => {
+    rose.remove();
+  }, 6000);
+}
+
+function showTeaser() {
+  alert("🌷 Day 2 is Propose Day 😌\nGet ready… I’ve got something special planned just for you 💖");
+}
+</script>
+
+</body>
+</html>
